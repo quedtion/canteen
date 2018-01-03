@@ -9,6 +9,7 @@
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, address, photo, start_time, end_time, introduce, deleted
+    id, name, address, photo, start_time, end_time, introduce, createTime, deleted
   </sql>
   <select id="selectByExample" parameterType="com.example.canteen.model.CanteenExample" resultMap="BaseResultMap">
     select
@@ -108,10 +109,10 @@
     </selectKey>
     insert into canteen (name, address, photo, 
       start_time, end_time, introduce, 
-      deleted)
+      createTime, deleted)
     values (#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
       #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{introduce,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=INTEGER})
+      #{createtime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.example.canteen.model.Canteen">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -137,6 +138,9 @@
       <if test="introduce != null">
         introduce,
       </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
       <if test="deleted != null">
         deleted,
       </if>
@@ -159,6 +163,9 @@
       </if>
       <if test="introduce != null">
         #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="deleted != null">
         #{deleted,jdbcType=INTEGER},
@@ -195,6 +202,9 @@
       <if test="record.introduce != null">
         introduce = #{record.introduce,jdbcType=VARCHAR},
       </if>
+      <if test="record.createtime != null">
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.deleted != null">
         deleted = #{record.deleted,jdbcType=INTEGER},
       </if>
@@ -212,6 +222,7 @@
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
       end_time = #{record.endTime,jdbcType=TIMESTAMP},
       introduce = #{record.introduce,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -238,6 +249,9 @@
       <if test="introduce != null">
         introduce = #{introduce,jdbcType=VARCHAR},
       </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
       <if test="deleted != null">
         deleted = #{deleted,jdbcType=INTEGER},
       </if>
@@ -252,6 +266,7 @@
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
       introduce = #{introduce,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

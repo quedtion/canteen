@@ -17,6 +17,8 @@ public class Canteen {
 
     private String introduce;
 
+    private Date createtime;
+
     private Integer deleted;
 
     public Integer getId() {
@@ -73,6 +75,14 @@ public class Canteen {
 
     public void setIntroduce(String introduce) {
         this.introduce = introduce == null ? null : introduce.trim();
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
     public Integer getDeleted() {
