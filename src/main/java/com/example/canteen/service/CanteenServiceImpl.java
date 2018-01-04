@@ -31,7 +31,6 @@ public class CanteenServiceImpl implements CanteenService {
     public String processList() {
         ResultCode<List<Canteen>> resultCode = new ResultCode<>();
 
-
         List<Canteen> list = null;
         try {
             list = canteenDao.findList();
