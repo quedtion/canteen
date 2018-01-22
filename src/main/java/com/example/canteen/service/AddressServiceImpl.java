@@ -107,8 +107,8 @@ public class AddressServiceImpl implements AddressService {
         validationUtils.verifyString("主键", address.getId(), "number", 1,
                 10, withoutId, validations);
 
-        validationUtils.verifyString("用户id", address.getUserid(), "number", 1,
-                10, false, validations);
+        validationUtils.verifyInt("用户id", address.getUserid(), 1, 999999999,
+                 false, validations);
 
         if (!validations.isEmpty()) {
             checkResult.setCheckCode(validations.get(0).getCode());
