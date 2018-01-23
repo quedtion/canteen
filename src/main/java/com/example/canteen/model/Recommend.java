@@ -15,6 +15,8 @@ public class Recommend {
 
     private String url;
 
+    private Integer deleted;
+
     public Integer getId() {
         return id;
     }
@@ -69,5 +71,13 @@ public class Recommend {
 
     public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
+    }
+
+    public Integer getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
     }
 }

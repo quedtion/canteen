@@ -9,6 +9,7 @@
     <result column="photo2" jdbcType="VARCHAR" property="photo2" />
     <result column="photo3" jdbcType="VARCHAR" property="photo3" />
     <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, time, photo1, photo2, photo3, url
+    id, title, time, photo1, photo2, photo3, url, deleted
   </sql>
   <select id="selectByExample" parameterType="com.example.canteen.model.RecommendExample" resultMap="BaseResultMap">
     select
@@ -106,11 +107,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into recommend (title, time, photo1, 
-      photo2, photo3, url
-      )
+      photo2, photo3, url, 
+      deleted)
     values (#{title,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{photo1,jdbcType=VARCHAR}, 
-      #{photo2,jdbcType=VARCHAR}, #{photo3,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}
-      )
+      #{photo2,jdbcType=VARCHAR}, #{photo3,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.example.canteen.model.Recommend">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -136,6 +137,9 @@
       <if test="url != null">
         url,
       </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="title != null">
@@ -155,6 +159,9 @@
       </if>
       <if test="url != null">
         #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -188,6 +195,9 @@
       <if test="record.url != null">
         url = #{record.url,jdbcType=VARCHAR},
       </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +211,8 @@
       photo1 = #{record.photo1,jdbcType=VARCHAR},
       photo2 = #{record.photo2,jdbcType=VARCHAR},
       photo3 = #{record.photo3,jdbcType=VARCHAR},
-      url = #{record.url,jdbcType=VARCHAR}
+      url = #{record.url,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +238,9 @@
       <if test="url != null">
         url = #{url,jdbcType=VARCHAR},
       </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -237,7 +251,8 @@
       photo1 = #{photo1,jdbcType=VARCHAR},
       photo2 = #{photo2,jdbcType=VARCHAR},
       photo3 = #{photo3,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR}
+      url = #{url,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

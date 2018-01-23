@@ -6,6 +6,7 @@ import com.example.canteen.model.Canteen;
 import com.example.canteen.model.CheckResult;
 import com.example.canteen.model.ResultCode;
 import com.example.canteen.model.Validation;
+import com.example.canteen.utils.Common;
 import com.example.canteen.utils.ValidationUtils;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +26,16 @@ public class CanteenServiceImpl implements CanteenService {
     private CanteenMapper canteenMapper;
 
     private Gson gson = new Gson();
+    private Common<Canteen> common = new Common();
     private ValidationUtils validationUtils = new ValidationUtils();
 
     @Override
     public String processList() {
         ResultCode<List<Canteen>> resultCode = new ResultCode<>();
 
-        List<Canteen> list = null;
         try {
-            list = canteenDao.findList();
-            if(list.isEmpty()){
-                resultCode.setRs(-300);
-                resultCode.setMsg("无数据");
-            }else{
-                resultCode.setRs(1);
-                resultCode.setValue(list);
-            }
+            List<Canteen> list = canteenDao.findList();
+            common.validateList(resultCode, list);
         } catch (Exception e) {
             e.printStackTrace();
             resultCode.setRs(-350);
