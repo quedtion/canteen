@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface AddressDao {
 
-    @Select("select * from address where userId = #{userId} and deleted = 0")
+    @Select("select * from address where userId = #{userId} and deleted = 0;")
     List<Address> findList(@Param("userId") int userId);
+
+    @Select("select * from address where id = #{id} and deleted = 0;")
+    Address findById(@Param("id") int id);
 }

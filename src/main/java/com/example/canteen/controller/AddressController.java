@@ -25,8 +25,15 @@ public class AddressController {
 
     @RequestMapping(value = "/list", method = {RequestMethod.POST})
     @ResponseBody
-    public String processAddressList(@RequestBody Address address){
+    public String processList(@RequestBody Address address){
         System.out.println("进入获取用户地址列表接口");
         return addressService.processList(address);
+    }
+
+    @RequestMapping(value = "/update", method = {RequestMethod.POST})
+    @ResponseBody
+    public String processUpdate(@RequestBody Address address){
+        System.out.println("进入修改用户地址列表接口");
+        return addressService.processUpdate(address);
     }
 }

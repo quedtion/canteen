@@ -221,7 +221,7 @@ public class ValidationUtils {
 							st_message = "只能输入"+min+"到"+max+"位文字";
 							break;
 					}
-					validations.add(new Validation(-240, field , st_message));
+					//validations.add(new Validation(-240, field , st_message));
 				}
 			}
 		}

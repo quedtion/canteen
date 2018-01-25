@@ -7,4 +7,6 @@ public interface AddressService {
     String processCreate(Address address);
 
     String processList(Address address);
+
+    String processUpdate(Address address);
 }
