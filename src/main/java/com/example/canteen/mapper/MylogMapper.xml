@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.canteen.mapper.MylogMapper">
+  <resultMap id="BaseResultMap" type="com.example.canteen.model.Mylog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userId" jdbcType="VARCHAR" property="userid" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="lontitude" jdbcType="DOUBLE" property="lontitude" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="velocity" jdbcType="DOUBLE" property="velocity" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="operation" jdbcType="INTEGER" property="operation" />
+    <result column="parameter" jdbcType="VARCHAR" property="parameter" />
+    <result column="rs" jdbcType="INTEGER" property="rs" />
+    <result column="msg" jdbcType="VARCHAR" property="msg" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.canteen.model.Mylog">
+    <result column="value" jdbcType="LONGVARCHAR" property="value" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, userId, type, position, method, path, lontitude, latitude, velocity, createTime, 
+    operation, parameter, rs, msg, ip
+  </sql>
+  <sql id="Blob_Column_List">
+    value
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.canteen.model.MylogExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mylog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.example.canteen.model.MylogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mylog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mylog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mylog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.canteen.model.MylogExample">
+    delete from mylog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.canteen.model.Mylog">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mylog (userId, type, position, 
+      method, path, lontitude, 
+      latitude, velocity, createTime, 
+      operation, parameter, rs, 
+      msg, ip, value)
+    values (#{userid,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{position,jdbcType=VARCHAR}, 
+      #{method,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{lontitude,jdbcType=DOUBLE}, 
+      #{latitude,jdbcType=DOUBLE}, #{velocity,jdbcType=DOUBLE}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{operation,jdbcType=INTEGER}, #{parameter,jdbcType=VARCHAR}, #{rs,jdbcType=INTEGER}, 
+      #{msg,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{value,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.canteen.model.Mylog">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mylog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="method != null">
+        method,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="lontitude != null">
+        lontitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="velocity != null">
+        velocity,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="operation != null">
+        operation,
+      </if>
+      <if test="parameter != null">
+        parameter,
+      </if>
+      <if test="rs != null">
+        rs,
+      </if>
+      <if test="msg != null">
+        msg,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="lontitude != null">
+        #{lontitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="velocity != null">
+        #{velocity,jdbcType=DOUBLE},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operation != null">
+        #{operation,jdbcType=INTEGER},
+      </if>
+      <if test="parameter != null">
+        #{parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="rs != null">
+        #{rs,jdbcType=INTEGER},
+      </if>
+      <if test="msg != null">
+        #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.canteen.model.MylogExample" resultType="java.lang.Long">
+    select count(*) from mylog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mylog
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.position != null">
+        position = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.method != null">
+        method = #{record.method,jdbcType=VARCHAR},
+      </if>
+      <if test="record.path != null">
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lontitude != null">
+        lontitude = #{record.lontitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.velocity != null">
+        velocity = #{record.velocity,jdbcType=DOUBLE},
+      </if>
+      <if test="record.createtime != null">
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operation != null">
+        operation = #{record.operation,jdbcType=INTEGER},
+      </if>
+      <if test="record.parameter != null">
+        parameter = #{record.parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rs != null">
+        rs = #{record.rs,jdbcType=INTEGER},
+      </if>
+      <if test="record.msg != null">
+        msg = #{record.msg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null">
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.value != null">
+        value = #{record.value,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update mylog
+    set id = #{record.id,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      position = #{record.position,jdbcType=VARCHAR},
+      method = #{record.method,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      lontitude = #{record.lontitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      velocity = #{record.velocity,jdbcType=DOUBLE},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      operation = #{record.operation,jdbcType=INTEGER},
+      parameter = #{record.parameter,jdbcType=VARCHAR},
+      rs = #{record.rs,jdbcType=INTEGER},
+      msg = #{record.msg,jdbcType=VARCHAR},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      value = #{record.value,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mylog
+    set id = #{record.id,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      position = #{record.position,jdbcType=VARCHAR},
+      method = #{record.method,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      lontitude = #{record.lontitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      velocity = #{record.velocity,jdbcType=DOUBLE},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      operation = #{record.operation,jdbcType=INTEGER},
+      parameter = #{record.parameter,jdbcType=VARCHAR},
+      rs = #{record.rs,jdbcType=INTEGER},
+      msg = #{record.msg,jdbcType=VARCHAR},
+      ip = #{record.ip,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.canteen.model.Mylog">
+    update mylog
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="lontitude != null">
+        lontitude = #{lontitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="velocity != null">
+        velocity = #{velocity,jdbcType=DOUBLE},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operation != null">
+        operation = #{operation,jdbcType=INTEGER},
+      </if>
+      <if test="parameter != null">
+        parameter = #{parameter,jdbcType=VARCHAR},
+      </if>
+      <if test="rs != null">
+        rs = #{rs,jdbcType=INTEGER},
+      </if>
+      <if test="msg != null">
+        msg = #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        value = #{value,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.canteen.model.Mylog">
+    update mylog
+    set userId = #{userid,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      position = #{position,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      lontitude = #{lontitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      velocity = #{velocity,jdbcType=DOUBLE},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      operation = #{operation,jdbcType=INTEGER},
+      parameter = #{parameter,jdbcType=VARCHAR},
+      rs = #{rs,jdbcType=INTEGER},
+      msg = #{msg,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      value = #{value,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.canteen.model.Mylog">
+    update mylog
+    set userId = #{userid,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      position = #{position,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      lontitude = #{lontitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      velocity = #{velocity,jdbcType=DOUBLE},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      operation = #{operation,jdbcType=INTEGER},
+      parameter = #{parameter,jdbcType=VARCHAR},
+      rs = #{rs,jdbcType=INTEGER},
+      msg = #{msg,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
