@@ -16,8 +16,6 @@ import java.util.Arrays;
 import java.util.Date;
 
 
-@Aspect
-@Component
 public class WebAspect {
 
     @Autowired
@@ -55,7 +53,6 @@ public class WebAspect {
         log.info("请求类方法参数:" + Arrays.toString(joinPoint.getArgs()));
         log.info("IP地址：" + ip);
         log.info("===============请求内容记录===============");
-
         Date date = new Date();
         System.out.println("aop before "+ date);
     }
