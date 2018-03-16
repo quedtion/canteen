@@ -150,22 +150,22 @@ public class AddressServiceImpl implements AddressService {
                 10, false, validations);
 
         validationUtils.verifyInt("性别", address.getGender(), 0, 1,
-                false, validations);
+                true, validations);
 
         validationUtils.verifyString("姓名", address.getName(), "validation", 1,
-                20, false, validations);
+                20, true, validations);
 
         validationUtils.verifyString("地址", address.getAddress(), "validation", 1,
-                100, false, validations);
+                100, true, validations);
 
         validationUtils.verifyString("门牌号", address.getName(), "validation", 1,
-                100, false, validations);
+                100, true, validations);
 
         validationUtils.verifyString("标签", address.getLabel(), "validation", 1,
                 100, true, validations);
 
         validationUtils.verifyString("联系方式", address.getTel(), "number", 7,
-                12, false, validations);
+                12, true, validations);
 
         if (!validations.isEmpty()) {
             checkResult.setCheckCode(validations.get(0).getCode());
