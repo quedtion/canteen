@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.canteen.mapper.OrdersMapper">
+  <resultMap id="BaseResultMap" type="com.example.canteen.model.Orders">
+    <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="canteenName" jdbcType="VARCHAR" property="canteenname" />
+    <result column="canteenId" jdbcType="INTEGER" property="canteenid" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="shouldPay" jdbcType="DOUBLE" property="shouldpay" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    code, userId, canteenName, canteenId, createTime, status, shouldPay, address, remark
+  </sql>
+  <select id="selectByExample" parameterType="com.example.canteen.model.OrdersExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where code = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from orders
+    where code = #{code,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.canteen.model.OrdersExample">
+    delete from orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.canteen.model.Orders">
+    insert into orders (code, userId, canteenName, 
+      canteenId, createTime, status, 
+      shouldPay, address, remark
+      )
+    values (#{code,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{canteenname,jdbcType=VARCHAR}, 
+      #{canteenid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{shouldpay,jdbcType=DOUBLE}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.canteen.model.Orders">
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="canteenname != null">
+        canteenName,
+      </if>
+      <if test="canteenid != null">
+        canteenId,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="shouldpay != null">
+        shouldPay,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="canteenname != null">
+        #{canteenname,jdbcType=VARCHAR},
+      </if>
+      <if test="canteenid != null">
+        #{canteenid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shouldpay != null">
+        #{shouldpay,jdbcType=DOUBLE},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.canteen.model.OrdersExample" resultType="java.lang.Long">
+    select count(*) from orders
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update orders
+    <set>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.canteenname != null">
+        canteenName = #{record.canteenname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.canteenid != null">
+        canteenId = #{record.canteenid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null">
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.shouldpay != null">
+        shouldPay = #{record.shouldpay,jdbcType=DOUBLE},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update orders
+    set code = #{record.code,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=INTEGER},
+      canteenName = #{record.canteenname,jdbcType=VARCHAR},
+      canteenId = #{record.canteenid,jdbcType=INTEGER},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      shouldPay = #{record.shouldpay,jdbcType=DOUBLE},
+      address = #{record.address,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.canteen.model.Orders">
+    update orders
+    <set>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="canteenname != null">
+        canteenName = #{canteenname,jdbcType=VARCHAR},
+      </if>
+      <if test="canteenid != null">
+        canteenId = #{canteenid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shouldpay != null">
+        shouldPay = #{shouldpay,jdbcType=DOUBLE},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.canteen.model.Orders">
+    update orders
+    set userId = #{userid,jdbcType=INTEGER},
+      canteenName = #{canteenname,jdbcType=VARCHAR},
+      canteenId = #{canteenid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      shouldPay = #{shouldpay,jdbcType=DOUBLE},
+      address = #{address,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+</mapper>

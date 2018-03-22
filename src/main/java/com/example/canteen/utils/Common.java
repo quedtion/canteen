@@ -3,6 +3,7 @@ package com.example.canteen.utils;
 import com.example.canteen.model.ResultCode;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Common<T> {
 
@@ -14,5 +15,10 @@ public class Common<T> {
             resultCode.setRs(1);
             resultCode.setValue(list);
         }
+    }
+
+    public String generateUUID(){
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
     }
 }
