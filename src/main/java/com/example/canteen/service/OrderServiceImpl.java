@@ -26,11 +26,12 @@ public class OrderServiceImpl implements OrderService {
     private Common common = new Common<>();
 
     @Override
-    public String processPay(List<Dish> dishList) {
+    public String processPay(Orders orders) {
         ResultCode<Orders> resultCode = new ResultCode<>();
         CheckResult checkResult = new CheckResult();
         checkResult.setCheckCode(1);
-        Orders orders = new Orders();
+
+        List<Dish> dishList = orders.getDishList();
         OrderDetail orderDetail =  new OrderDetail();
         String uuid = common.generateUUID();
         double shouldPay = 0.0;
@@ -54,7 +55,7 @@ public class OrderServiceImpl implements OrderService {
             orders.setCreatetime(date);
             orders.setShouldpay(shouldPay);
             orders.setStatus(1);
-            orders.setUserid(1);
+
             ordersMapper.insertSelective(orders);
             resultCode.setRs(1);
             resultCode.setValue(orders);

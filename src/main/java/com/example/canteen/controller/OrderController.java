@@ -1,6 +1,7 @@
 package com.example.canteen.controller;
 
 import com.example.canteen.model.Dish;
+import com.example.canteen.model.Orders;
 import com.example.canteen.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,9 @@ public class OrderController {
 
     @RequestMapping(value = "/pay", method = RequestMethod.POST)
     @ResponseBody
-    public String processPay(@RequestBody List<Dish> dishList){
+    public String processPay(@RequestBody Orders orders){
         System.out.println("进入下单接口");
-        return orderService.processPay(dishList);
+        return orderService.processPay(orders);
     }
 }
 

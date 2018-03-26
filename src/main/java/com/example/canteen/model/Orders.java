@@ -1,6 +1,7 @@
 package com.example.canteen.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Orders {
     private String code;
@@ -20,6 +21,8 @@ public class Orders {
     private String address;
 
     private String remark;
+
+    private List<Dish> dishList;
 
     public String getCode() {
         return code;
@@ -91,5 +94,13 @@ public class Orders {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public List<Dish> getDishList() {
+        return dishList;
+    }
+
+    public void setDishList(List<Dish> dishList) {
+        this.dishList = dishList;
     }
 }
