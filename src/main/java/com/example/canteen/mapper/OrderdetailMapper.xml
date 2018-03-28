@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.canteen.mapper.OrderDetailMapper">
-  <resultMap id="BaseResultMap" type="com.example.canteen.model.OrderDetail">
+<mapper namespace="com.example.canteen.mapper.OrderdetailMapper">
+  <resultMap id="BaseResultMap" type="com.example.canteen.model.Orderdetail">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="dishId" jdbcType="INTEGER" property="dishid" />
@@ -70,13 +70,13 @@
   <sql id="Base_Column_List">
     id, code, dishId, dishName, price, count
   </sql>
-  <select id="selectByExample" parameterType="com.example.canteen.model.OrderDetailExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.example.canteen.model.OrderdetailExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from order_detail
+    from orderdetail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,33 +87,33 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from order_detail
+    from orderdetail
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from order_detail
+    delete from orderdetail
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.canteen.model.OrderDetailExample">
-    delete from order_detail
+  <delete id="deleteByExample" parameterType="com.example.canteen.model.OrderdetailExample">
+    delete from orderdetail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.canteen.model.OrderDetail">
+  <insert id="insert" parameterType="com.example.canteen.model.Orderdetail">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into order_detail (code, dishId, dishName, 
+    insert into orderdetail (code, dishId, dishName,
       price, count)
     values (#{code,jdbcType=VARCHAR}, #{dishid,jdbcType=INTEGER}, #{dishname,jdbcType=VARCHAR}, 
       #{price,jdbcType=DOUBLE}, #{count,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.canteen.model.OrderDetail">
+  <insert id="insertSelective" parameterType="com.example.canteen.model.Orderdetail">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into order_detail
+    insert into orderdetail
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="code != null">
         code,
@@ -149,14 +149,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.canteen.model.OrderDetailExample" resultType="java.lang.Long">
-    select count(*) from order_detail
+  <select id="countByExample" parameterType="com.example.canteen.model.OrderdetailExample" resultType="java.lang.Long">
+    select count(*) from orderdetail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update order_detail
+    update orderdetail
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
@@ -182,7 +182,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update order_detail
+    update orderdetail
     set id = #{record.id,jdbcType=INTEGER},
       code = #{record.code,jdbcType=VARCHAR},
       dishId = #{record.dishid,jdbcType=INTEGER},
@@ -193,8 +193,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.canteen.model.OrderDetail">
-    update order_detail
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.canteen.model.Orderdetail">
+    update orderdetail
     <set>
       <if test="code != null">
         code = #{code,jdbcType=VARCHAR},
@@ -214,8 +214,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.canteen.model.OrderDetail">
-    update order_detail
+  <update id="updateByPrimaryKey" parameterType="com.example.canteen.model.Orderdetail">
+    update orderdetail
     set code = #{code,jdbcType=VARCHAR},
       dishId = #{dishid,jdbcType=INTEGER},
       dishName = #{dishname,jdbcType=VARCHAR},

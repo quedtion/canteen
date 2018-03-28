@@ -1,6 +1,6 @@
 package com.example.canteen.model;
 
-public class OrderDetail {
+public class Orderdetail {
     private Integer id;
 
     private String code;

@@ -3,14 +3,14 @@ package com.example.canteen.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDetailExample {
+public class OrderdetailExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public OrderDetailExample() {
+    public OrderdetailExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

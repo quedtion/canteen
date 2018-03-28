@@ -1,7 +1,7 @@
 package com.example.canteen.service;
 
 import com.example.canteen.dao.CanteenDao;
-import com.example.canteen.mapper.OrderDetailMapper;
+import com.example.canteen.mapper.OrderdetailMapper;
 import com.example.canteen.mapper.OrdersMapper;
 import com.example.canteen.model.*;
 import com.example.canteen.utils.Common;
@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrdersMapper ordersMapper;
     @Autowired
-    private OrderDetailMapper orderDetailMapper;
+    private OrderdetailMapper orderDetailMapper;
 
     private Gson gson = new Gson();
     private Common common = new Common<>();
@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
         checkResult.setCheckCode(1);
 
         List<Dish> dishList = orders.getDishList();
-        OrderDetail orderDetail =  new OrderDetail();
+        Orderdetail orderDetail =  new Orderdetail();
         String uuid = common.generateUUID();
         double shouldPay = 0.0;
         orders.setCode(uuid);
@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
             int canteenId = dishList.get(0).getCanteenid();
             orders.setCanteenid(canteenId);
             Canteen canteen = canteenDao.findById(canteenId);
-            orders.setCanteenname(canteen.getName());
+            //orders.setCanteenname(canteen.getName());
             orders.setCreatetime(date);
             orders.setShouldpay(shouldPay);
             orders.setStatus(1);
