@@ -8,7 +8,7 @@
     <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="photo" jdbcType="VARCHAR" property="photo" />
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />
-    <result column="salesVolume" jdbcType="VARCHAR" property="salesvolume" />
+    <result column="salesVolume" jdbcType="INTEGER" property="salesvolume" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
   </resultMap>
@@ -111,7 +111,7 @@
       photo, introduce, salesVolume, 
       createTime, deleted)
     values (#{canteenid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
-      #{photo,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{salesvolume,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{salesvolume,jdbcType=INTEGER}, 
       #{createtime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.example.canteen.model.Dish">
@@ -162,7 +162,7 @@
         #{introduce,jdbcType=VARCHAR},
       </if>
       <if test="salesvolume != null">
-        #{salesvolume,jdbcType=VARCHAR},
+        #{salesvolume,jdbcType=INTEGER},
       </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
@@ -200,7 +200,7 @@
         introduce = #{record.introduce,jdbcType=VARCHAR},
       </if>
       <if test="record.salesvolume != null">
-        salesVolume = #{record.salesvolume,jdbcType=VARCHAR},
+        salesVolume = #{record.salesvolume,jdbcType=INTEGER},
       </if>
       <if test="record.createtime != null">
         createTime = #{record.createtime,jdbcType=TIMESTAMP},
@@ -221,7 +221,7 @@
       price = #{record.price,jdbcType=DOUBLE},
       photo = #{record.photo,jdbcType=VARCHAR},
       introduce = #{record.introduce,jdbcType=VARCHAR},
-      salesVolume = #{record.salesvolume,jdbcType=VARCHAR},
+      salesVolume = #{record.salesvolume,jdbcType=INTEGER},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -247,7 +247,7 @@
         introduce = #{introduce,jdbcType=VARCHAR},
       </if>
       <if test="salesvolume != null">
-        salesVolume = #{salesvolume,jdbcType=VARCHAR},
+        salesVolume = #{salesvolume,jdbcType=INTEGER},
       </if>
       <if test="createtime != null">
         createTime = #{createtime,jdbcType=TIMESTAMP},
@@ -265,7 +265,7 @@
       price = #{price,jdbcType=DOUBLE},
       photo = #{photo,jdbcType=VARCHAR},
       introduce = #{introduce,jdbcType=VARCHAR},
-      salesVolume = #{salesvolume,jdbcType=VARCHAR},
+      salesVolume = #{salesvolume,jdbcType=INTEGER},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}

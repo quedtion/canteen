@@ -15,7 +15,7 @@ public class Dish {
 
     private String introduce;
 
-    private String salesvolume;
+    private Integer salesvolume;
 
     private Date createtime;
 
@@ -79,12 +79,12 @@ public class Dish {
         this.introduce = introduce == null ? null : introduce.trim();
     }
 
-    public String getSalesvolume() {
+    public Integer getSalesvolume() {
         return salesvolume;
     }
 
-    public void setSalesvolume(String salesvolume) {
-        this.salesvolume = salesvolume == null ? null : salesvolume.trim();
+    public void setSalesvolume(Integer salesvolume) {
+        this.salesvolume = salesvolume;
     }
 
     public Date getCreatetime() {

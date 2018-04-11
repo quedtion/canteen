@@ -1,6 +1,7 @@
 package com.example.canteen.service;
 
 import com.example.canteen.dao.CanteenDao;
+import com.example.canteen.dao.DishDao;
 import com.example.canteen.mapper.OrderdetailMapper;
 import com.example.canteen.mapper.OrdersMapper;
 import com.example.canteen.model.*;
@@ -17,6 +18,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private CanteenDao canteenDao;
+
+    @Autowired
+    private DishDao dishDao;
+
     @Autowired
     private OrdersMapper ordersMapper;
     @Autowired
@@ -47,6 +52,8 @@ public class OrderServiceImpl implements OrderService {
                 orderDetail.setDishname(dish.getName());
                 orderDetailMapper.insertSelective(orderDetail);
                 shouldPay += dish.getPrice() * dish.getNum();
+                //更新菜品的销售量
+                dishDao.updateCount(dish.getId(), dish.getNum());
             }
             int canteenId = dishList.get(0).getCanteenid();
             orders.setCanteenid(canteenId);

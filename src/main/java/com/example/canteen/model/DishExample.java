@@ -505,62 +505,52 @@ public class DishExample {
             return (Criteria) this;
         }
 
-        public Criteria andSalesvolumeEqualTo(String value) {
+        public Criteria andSalesvolumeEqualTo(Integer value) {
             addCriterion("salesVolume =", value, "salesvolume");
             return (Criteria) this;
         }
 
-        public Criteria andSalesvolumeNotEqualTo(String value) {
+        public Criteria andSalesvolumeNotEqualTo(Integer value) {
             addCriterion("salesVolume <>", value, "salesvolume");
             return (Criteria) this;
         }
 
-        public Criteria andSalesvolumeGreaterThan(String value) {
+        public Criteria andSalesvolumeGreaterThan(Integer value) {
             addCriterion("salesVolume >", value, "salesvolume");
             return (Criteria) this;
         }
 
-        public Criteria andSalesvolumeGreaterThanOrEqualTo(String value) {
+        public Criteria andSalesvolumeGreaterThanOrEqualTo(Integer value) {
             addCriterion("salesVolume >=", value, "salesvolume");
             return (Criteria) this;
         }
 
-        public Criteria andSalesvolumeLessThan(String value) {
+        public Criteria andSalesvolumeLessThan(Integer value) {
             addCriterion("salesVolume <", value, "salesvolume");
             return (Criteria) this;
         }
 
-        public Criteria andSalesvolumeLessThanOrEqualTo(String value) {
+        public Criteria andSalesvolumeLessThanOrEqualTo(Integer value) {
             addCriterion("salesVolume <=", value, "salesvolume");
             return (Criteria) this;
         }
 
-        public Criteria andSalesvolumeLike(String value) {
-            addCriterion("salesVolume like", value, "salesvolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesvolumeNotLike(String value) {
-            addCriterion("salesVolume not like", value, "salesvolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesvolumeIn(List<String> values) {
+        public Criteria andSalesvolumeIn(List<Integer> values) {
             addCriterion("salesVolume in", values, "salesvolume");
             return (Criteria) this;
         }
 
-        public Criteria andSalesvolumeNotIn(List<String> values) {
+        public Criteria andSalesvolumeNotIn(List<Integer> values) {
             addCriterion("salesVolume not in", values, "salesvolume");
             return (Criteria) this;
         }
 
-        public Criteria andSalesvolumeBetween(String value1, String value2) {
+        public Criteria andSalesvolumeBetween(Integer value1, Integer value2) {
             addCriterion("salesVolume between", value1, value2, "salesvolume");
             return (Criteria) this;
         }
 
-        public Criteria andSalesvolumeNotBetween(String value1, String value2) {
+        public Criteria andSalesvolumeNotBetween(Integer value1, Integer value2) {
             addCriterion("salesVolume not between", value1, value2, "salesvolume");
             return (Criteria) this;
         }

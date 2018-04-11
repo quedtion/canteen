@@ -33,7 +33,7 @@ public class UserContentServiceImpl implements UserContentService{
                 resultCode.setRs(1);
             }catch(Exception e){
                 e.printStackTrace();
-                checkResult.setCheckCode(-1);
+                checkResult.setCheckCode(-350);
                 checkResult.setCheckMsg("数据库插入操作错误");
             }
         }
@@ -58,7 +58,7 @@ public class UserContentServiceImpl implements UserContentService{
                 resultCode.setValue(userContentList);
             }catch(Exception e){
                 e.printStackTrace();
-                checkResult.setCheckCode(-1);
+                checkResult.setCheckCode(-350);
                 checkResult.setCheckMsg("数据库插入操作错误");
             }
         }
@@ -83,7 +83,7 @@ public class UserContentServiceImpl implements UserContentService{
                 resultCode.setValue(userContentList);
             }catch(Exception e){
                 e.printStackTrace();
-                checkResult.setCheckCode(-1);
+                checkResult.setCheckCode(-350);
                 checkResult.setCheckMsg("数据库插入操作错误");
             }
         }

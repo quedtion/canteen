@@ -2,7 +2,9 @@ package com.example.canteen.service;
 
 import com.example.canteen.dao.DishDao;
 import com.example.canteen.model.Dish;
+import com.example.canteen.model.RankingList;
 import com.example.canteen.model.ResultCode;
+import com.github.pagehelper.PageHelper;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,28 @@ public class DishServiceImpl implements DishService{
                     resultCode.setRs(-300);
                     resultCode.setMsg("无数据");
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+                resultCode.setRs(-350);
+                resultCode.setMsg("数据库插入操作错误");
+            }
+        }while(false);
+
+        return gson.toJson(resultCode);
+    }
+
+    @Override
+    public String processRankingList(RankingList rankingList) {
+        ResultCode<List<Dish>> resultCode = new ResultCode<>();
+        do{
+
+            try {
+                //设置分页
+                PageHelper.startPage(rankingList.getPage(), rankingList.getAccount());
+                //获取列表
+                List<Dish> list = dishDao.findList();
+                resultCode.setRs(1);
+                resultCode.setValue(list);
             } catch (Exception e) {
                 e.printStackTrace();
                 resultCode.setRs(-350);
