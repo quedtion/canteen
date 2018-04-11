@@ -495,6 +495,76 @@ public class DishExample {
             return (Criteria) this;
         }
 
+        public Criteria andSalesvolumeIsNull() {
+            addCriterion("salesVolume is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeIsNotNull() {
+            addCriterion("salesVolume is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeEqualTo(String value) {
+            addCriterion("salesVolume =", value, "salesvolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeNotEqualTo(String value) {
+            addCriterion("salesVolume <>", value, "salesvolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeGreaterThan(String value) {
+            addCriterion("salesVolume >", value, "salesvolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeGreaterThanOrEqualTo(String value) {
+            addCriterion("salesVolume >=", value, "salesvolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeLessThan(String value) {
+            addCriterion("salesVolume <", value, "salesvolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeLessThanOrEqualTo(String value) {
+            addCriterion("salesVolume <=", value, "salesvolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeLike(String value) {
+            addCriterion("salesVolume like", value, "salesvolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeNotLike(String value) {
+            addCriterion("salesVolume not like", value, "salesvolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeIn(List<String> values) {
+            addCriterion("salesVolume in", values, "salesvolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeNotIn(List<String> values) {
+            addCriterion("salesVolume not in", values, "salesvolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeBetween(String value1, String value2) {
+            addCriterion("salesVolume between", value1, value2, "salesvolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesvolumeNotBetween(String value1, String value2) {
+            addCriterion("salesVolume not between", value1, value2, "salesvolume");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatetimeIsNull() {
             addCriterion("createTime is null");
             return (Criteria) this;

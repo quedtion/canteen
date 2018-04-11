@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.canteen.mapper.DishMapper">
-  <resultMap id="BaseResultMap" type="com.example.canteen.model.Dish">
+<mapper namespace="com.example.canteen.mapper.UsercontentMapper">
+  <resultMap id="BaseResultMap" type="com.example.canteen.model.Usercontent">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="canteenId" jdbcType="INTEGER" property="canteenid" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="price" jdbcType="DOUBLE" property="price" />
-    <result column="photo" jdbcType="VARCHAR" property="photo" />
-    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
-    <result column="salesVolume" jdbcType="VARCHAR" property="salesvolume" />
+    <result column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.canteen.model.Usercontent">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,15 +70,20 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, canteenId, name, price, photo, introduce, salesVolume, createTime, deleted
+    id, canteenId, userId, orderId, createTime
   </sql>
-  <select id="selectByExample" parameterType="com.example.canteen.model.DishExample" resultMap="BaseResultMap">
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.example.canteen.model.UsercontentExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from dish
+    ,
+    <include refid="Blob_Column_List" />
+    from usercontent
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,99 +91,95 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.example.canteen.model.UsercontentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from usercontent
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
-    from dish
+    ,
+    <include refid="Blob_Column_List" />
+    from usercontent
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from dish
+    delete from usercontent
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.canteen.model.DishExample">
-    delete from dish
+  <delete id="deleteByExample" parameterType="com.example.canteen.model.UsercontentExample">
+    delete from usercontent
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.canteen.model.Dish">
+  <insert id="insert" parameterType="com.example.canteen.model.Usercontent">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into dish (canteenId, name, price, 
-      photo, introduce, salesVolume, 
-      createTime, deleted)
-    values (#{canteenid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
-      #{photo,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{salesvolume,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER})
+    insert into usercontent (canteenId, userId, orderId, 
+      createTime, content)
+    values (#{canteenid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.canteen.model.Dish">
+  <insert id="insertSelective" parameterType="com.example.canteen.model.Usercontent">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into dish
+    insert into usercontent
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="canteenid != null">
         canteenId,
       </if>
-      <if test="name != null">
-        name,
+      <if test="userid != null">
+        userId,
       </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="photo != null">
-        photo,
-      </if>
-      <if test="introduce != null">
-        introduce,
-      </if>
-      <if test="salesvolume != null">
-        salesVolume,
+      <if test="orderid != null">
+        orderId,
       </if>
       <if test="createtime != null">
         createTime,
       </if>
-      <if test="deleted != null">
-        deleted,
+      <if test="content != null">
+        content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="canteenid != null">
         #{canteenid,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
       </if>
-      <if test="price != null">
-        #{price,jdbcType=DOUBLE},
-      </if>
-      <if test="photo != null">
-        #{photo,jdbcType=VARCHAR},
-      </if>
-      <if test="introduce != null">
-        #{introduce,jdbcType=VARCHAR},
-      </if>
-      <if test="salesvolume != null">
-        #{salesvolume,jdbcType=VARCHAR},
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
       </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="deleted != null">
-        #{deleted,jdbcType=INTEGER},
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.canteen.model.DishExample" resultType="java.lang.Long">
-    select count(*) from dish
+  <select id="countByExample" parameterType="com.example.canteen.model.UsercontentExample" resultType="java.lang.Long">
+    select count(*) from usercontent
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update dish
+    update usercontent
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
@@ -187,87 +187,82 @@
       <if test="record.canteenid != null">
         canteenId = #{record.canteenid,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=INTEGER},
       </if>
-      <if test="record.price != null">
-        price = #{record.price,jdbcType=DOUBLE},
-      </if>
-      <if test="record.photo != null">
-        photo = #{record.photo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.introduce != null">
-        introduce = #{record.introduce,jdbcType=VARCHAR},
-      </if>
-      <if test="record.salesvolume != null">
-        salesVolume = #{record.salesvolume,jdbcType=VARCHAR},
+      <if test="record.orderid != null">
+        orderId = #{record.orderid,jdbcType=INTEGER},
       </if>
       <if test="record.createtime != null">
         createTime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.deleted != null">
-        deleted = #{record.deleted,jdbcType=INTEGER},
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
       </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update usercontent
+    set id = #{record.id,jdbcType=INTEGER},
+      canteenId = #{record.canteenid,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      orderId = #{record.orderid,jdbcType=INTEGER},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update dish
+    update usercontent
     set id = #{record.id,jdbcType=INTEGER},
       canteenId = #{record.canteenid,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=DOUBLE},
-      photo = #{record.photo,jdbcType=VARCHAR},
-      introduce = #{record.introduce,jdbcType=VARCHAR},
-      salesVolume = #{record.salesvolume,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      deleted = #{record.deleted,jdbcType=INTEGER}
+      userId = #{record.userid,jdbcType=INTEGER},
+      orderId = #{record.orderid,jdbcType=INTEGER},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.canteen.model.Dish">
-    update dish
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.canteen.model.Usercontent">
+    update usercontent
     <set>
       <if test="canteenid != null">
         canteenId = #{canteenid,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="userid != null">
+        userId = #{userid,jdbcType=INTEGER},
       </if>
-      <if test="price != null">
-        price = #{price,jdbcType=DOUBLE},
-      </if>
-      <if test="photo != null">
-        photo = #{photo,jdbcType=VARCHAR},
-      </if>
-      <if test="introduce != null">
-        introduce = #{introduce,jdbcType=VARCHAR},
-      </if>
-      <if test="salesvolume != null">
-        salesVolume = #{salesvolume,jdbcType=VARCHAR},
+      <if test="orderid != null">
+        orderId = #{orderid,jdbcType=INTEGER},
       </if>
       <if test="createtime != null">
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="deleted != null">
-        deleted = #{deleted,jdbcType=INTEGER},
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.canteen.model.Dish">
-    update dish
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.canteen.model.Usercontent">
+    update usercontent
     set canteenId = #{canteenid,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      price = #{price,jdbcType=DOUBLE},
-      photo = #{photo,jdbcType=VARCHAR},
-      introduce = #{introduce,jdbcType=VARCHAR},
-      salesVolume = #{salesvolume,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      orderId = #{orderid,jdbcType=INTEGER},
       createTime = #{createtime,jdbcType=TIMESTAMP},
-      deleted = #{deleted,jdbcType=INTEGER}
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.canteen.model.Usercontent">
+    update usercontent
+    set canteenId = #{canteenid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      orderId = #{orderid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

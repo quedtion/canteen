@@ -15,17 +15,19 @@ public class Dish {
 
     private String introduce;
 
+    private String salesvolume;
+
     private Date createtime;
 
     private Integer deleted;
 
-    private int num;
+    private Integer num;
 
-    public int getNum() {
+    public Integer getNum() {
         return num;
     }
 
-    public void setNum(int num) {
+    public void setNum(Integer num) {
         this.num = num;
     }
 
@@ -75,6 +77,14 @@ public class Dish {
 
     public void setIntroduce(String introduce) {
         this.introduce = introduce == null ? null : introduce.trim();
+    }
+
+    public String getSalesvolume() {
+        return salesvolume;
+    }
+
+    public void setSalesvolume(String salesvolume) {
+        this.salesvolume = salesvolume == null ? null : salesvolume.trim();
     }
 
     public Date getCreatetime() {

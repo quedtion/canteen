@@ -40,7 +40,7 @@ public class AddressServiceImpl implements AddressService {
 
             //数据库校验
             checkUser(checkResult, address.getUserid());
-            if(checkResult.getCheckCode() < 0){
+            if (checkResult.getCheckCode() < 0) {
                 break;
             }
 
@@ -56,7 +56,7 @@ public class AddressServiceImpl implements AddressService {
                 checkResult.setCheckMsg("数据库插入操作错误");
             }
 
-        }while(false);
+        } while (false);
         if (checkResult.getCheckCode() < 0) {
             resultCode.setRs(checkResult.getCheckCode());
             resultCode.setMsg(checkResult.getCheckMsg());
@@ -87,7 +87,7 @@ public class AddressServiceImpl implements AddressService {
                 checkResult.setCheckCode(-350);
                 checkResult.setCheckMsg("数据库插入操作错误");
             }
-        }while(false);
+        } while (false);
         if (checkResult.getCheckCode() < 0) {
             resultCode.setRs(checkResult.getCheckCode());
             resultCode.setMsg(checkResult.getCheckMsg());
@@ -110,7 +110,7 @@ public class AddressServiceImpl implements AddressService {
 
             //数据库校验
             checkUser(checkResult, address.getUserid());
-            if(checkResult.getCheckCode() < 0){
+            if (checkResult.getCheckCode() < 0) {
                 break;
             }
 
@@ -125,7 +125,7 @@ public class AddressServiceImpl implements AddressService {
                 checkResult.setCheckCode(-350);
                 checkResult.setCheckMsg("数据库修改操作错误");
             }
-        }while(false);
+        } while (false);
         if (checkResult.getCheckCode() < 0) {
             resultCode.setRs(checkResult.getCheckCode());
             resultCode.setMsg(checkResult.getCheckMsg());
@@ -136,9 +136,10 @@ public class AddressServiceImpl implements AddressService {
 
     /**
      * 校验传入的食堂数据是否正确
-     * @param address 食堂信息model
+     *
+     * @param address     食堂信息model
      * @param checkResult 校验结果model
-     * @param withoutId  true不需要校验id/false需要校验id
+     * @param withoutId   true不需要校验id/false需要校验id
      */
     private void processValidation(Address address, CheckResult checkResult, boolean withoutId) {
         List<Validation> validations = new ArrayList<>();
@@ -174,13 +175,13 @@ public class AddressServiceImpl implements AddressService {
         }
     }
 
-    private void checkUser(CheckResult checkResult, int userId){
+    private void checkUser(CheckResult checkResult, int userId) {
 
         List<User> list = userDao.findById(userId);
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             checkResult.setCheckCode(-340);
             checkResult.setCheckMsg("用户不存在");
-        }else if(list.size() > 1){
+        } else if (list.size() > 1) {
             checkResult.setCheckCode(-340);
             checkResult.setCheckMsg("传入的用户id有误");
         }
