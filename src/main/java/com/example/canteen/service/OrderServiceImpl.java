@@ -58,10 +58,11 @@ public class OrderServiceImpl implements OrderService {
             int canteenId = dishList.get(0).getCanteenid();
             orders.setCanteenid(canteenId);
             Canteen canteen = canteenDao.findById(canteenId);
-            //orders.setCanteenname(canteen.getName());
+            orders.setCanteenname(canteen.getName());
             orders.setCreatetime(date);
             orders.setShouldpay(shouldPay);
             orders.setStatus(1);
+
             //插入订单列表
             ordersMapper.insertSelective(orders);
             resultCode.setRs(1);
