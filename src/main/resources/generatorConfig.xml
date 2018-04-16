@@ -195,7 +195,7 @@
         -->
 
         <!-- 指定数据表 -->
-        <table tableName="orders">
+        <table tableName="myCollection">
             <!-- 参考 javaModelGenerator 的 constructorBased属性
             <property name="constructorBased" value="false"/>
             -->
@@ -256,7 +256,7 @@
                     JDBC      :相当于在生成的insert元素上添加useGeneratedKeys="true"和keyProperty属性
             <generatedKey column="" sqlStatement=""/>
              -->
-            <generatedKey column="code" sqlStatement="MySql" identity="true" />
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
             <!--
                 该元素会在根据表中列名计算对象属性名之前先重命名列名，非常适合用于表中的列都有公用的前缀字符串的时候，
                 比如列名为：CUST_ID,CUST_NAME,CUST_EMAIL,CUST_ADDRESS等；
