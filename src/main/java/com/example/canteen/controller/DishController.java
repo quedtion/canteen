@@ -25,7 +25,7 @@ public class DishController {
     @RequestMapping(value = "/ranking/list", method = RequestMethod.POST)
     @ResponseBody
     public String processRankingList(@RequestBody RankingList rankingList){
-        System.out.println("进入获取没事排行榜信息接口");
+        System.out.println("进入获取美食排行榜信息接口");
         return dishService.processRankingList(rankingList);
     }
 }

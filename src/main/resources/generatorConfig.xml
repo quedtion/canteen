@@ -57,7 +57,7 @@
 
         <!-- 数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/canteen?autoReconnect=true&amp;useSSL=false"
+                        connectionURL="jdbc:mysql://192.168.4.224:3306/canteen?autoReconnect=true&amp;useSSL=false"
                         userId="canteen"
                         password="111111">
             <!-- 这里面可以设置property属性，每一个property属性都设置到配置的Driver上 -->
