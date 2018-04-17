@@ -24,6 +24,8 @@ public class Orders {
 
     private List<Dish> dishList;
 
+    private String photo;
+
     public String getCode() {
         return code;
     }
@@ -102,5 +104,13 @@ public class Orders {
 
     public void setDishList(List<Dish> dishList) {
         this.dishList = dishList;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

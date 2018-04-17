@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
             orders.setCanteenname(canteen.getName());
             orders.setCreatetime(date);
             orders.setShouldpay(shouldPay);
-            orders.setStatus(1);
+            orders.setStatus(2);
 
             //插入订单列表
             ordersMapper.insertSelective(orders);

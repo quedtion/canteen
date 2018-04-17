@@ -18,11 +18,11 @@ public interface UsercontentDao {
 
     /**
      * 根据订单id获取评论列表
-     * @param orderId  订单id
+     * @param code  订单号
      * @return
      */
-    @Select("select * from userContent where orderId = #{orderId};")
-    List<Usercontent> findListByOrderId(@Param("orderId") int orderId);
+    @Select("select * from userContent where code = #{code};")
+    List<Usercontent> findListByCode(@Param("code") String code);
 
 
 }

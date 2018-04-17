@@ -7,6 +7,6 @@ public interface UserContentService {
     String processCreate(Usercontent usercontent);
     //根据食堂id查询评论
     String processListByCanteenId(Usercontent usercontent);
-    //根据订单id查询评论
-    String processListByOrderId(Usercontent usercontent);
+    //根据订单号查询评论
+    String processListByCode(Usercontent usercontent);
 }

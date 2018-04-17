@@ -33,7 +33,7 @@ public class ContentController {
     @RequestMapping(value = "/listByOrder", method = RequestMethod.POST)
     @ResponseBody
     public String processListByOrderId(@RequestBody Usercontent usercontent){
-        System.out.println("进入根据订单id获取评论列表接口");
-        return userContentService.processListByOrderId(usercontent);
+        System.out.println("进入根据订单号获取评论列表接口");
+        return userContentService.processListByCode(usercontent);
     }
 }

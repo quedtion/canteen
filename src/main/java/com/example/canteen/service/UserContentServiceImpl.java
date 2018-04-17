@@ -71,14 +71,14 @@ public class UserContentServiceImpl implements UserContentService{
     }
 
     @Override
-    public String processListByOrderId(Usercontent usercontent) {
+    public String processListByCode(Usercontent usercontent) {
         ResultCode<List<Usercontent>> resultCode = new ResultCode<>();
         CheckResult checkResult = new CheckResult();
         checkResult.setCheckCode(1);
         do {
             try{
                 //根据订单id获取评论列表
-                List<Usercontent> userContentList = usercontentDao.findListByOrderId(usercontent.getOrderid());
+                List<Usercontent> userContentList = usercontentDao.findListByCode(usercontent.getCode());
                 resultCode.setRs(1);
                 resultCode.setValue(userContentList);
             }catch(Exception e){

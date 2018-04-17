@@ -5,7 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="canteenId" jdbcType="INTEGER" property="canteenid" />
     <result column="userId" jdbcType="INTEGER" property="userid" />
-    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.canteen.model.Usercontent">
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, canteenId, userId, orderId, createTime
+    id, canteenId, userId, code, createTime
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -127,9 +127,9 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into usercontent (canteenId, userId, orderId, 
+    insert into usercontent (canteenId, userId, code, 
       createTime, content)
-    values (#{canteenid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, 
+    values (#{canteenid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
       #{createtime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.canteen.model.Usercontent">
@@ -144,8 +144,8 @@
       <if test="userid != null">
         userId,
       </if>
-      <if test="orderid != null">
-        orderId,
+      <if test="code != null">
+        code,
       </if>
       <if test="createtime != null">
         createTime,
@@ -161,8 +161,8 @@
       <if test="userid != null">
         #{userid,jdbcType=INTEGER},
       </if>
-      <if test="orderid != null">
-        #{orderid,jdbcType=INTEGER},
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
@@ -190,8 +190,8 @@
       <if test="record.userid != null">
         userId = #{record.userid,jdbcType=INTEGER},
       </if>
-      <if test="record.orderid != null">
-        orderId = #{record.orderid,jdbcType=INTEGER},
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
       </if>
       <if test="record.createtime != null">
         createTime = #{record.createtime,jdbcType=TIMESTAMP},
@@ -209,7 +209,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       canteenId = #{record.canteenid,jdbcType=INTEGER},
       userId = #{record.userid,jdbcType=INTEGER},
-      orderId = #{record.orderid,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -221,7 +221,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       canteenId = #{record.canteenid,jdbcType=INTEGER},
       userId = #{record.userid,jdbcType=INTEGER},
-      orderId = #{record.orderid,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
       createTime = #{record.createtime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -236,8 +236,8 @@
       <if test="userid != null">
         userId = #{userid,jdbcType=INTEGER},
       </if>
-      <if test="orderid != null">
-        orderId = #{orderid,jdbcType=INTEGER},
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
         createTime = #{createtime,jdbcType=TIMESTAMP},
@@ -252,7 +252,7 @@
     update usercontent
     set canteenId = #{canteenid,jdbcType=INTEGER},
       userId = #{userid,jdbcType=INTEGER},
-      orderId = #{orderid,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -261,7 +261,7 @@
     update usercontent
     set canteenId = #{canteenid,jdbcType=INTEGER},
       userId = #{userid,jdbcType=INTEGER},
-      orderId = #{orderid,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -9,7 +9,7 @@ public class Usercontent {
 
     private Integer userid;
 
-    private Integer orderid;
+    private String code;
 
     private Date createtime;
 
@@ -39,12 +39,12 @@ public class Usercontent {
         this.userid = userid;
     }
 
-    public Integer getOrderid() {
-        return orderid;
+    public String getCode() {
+        return code;
     }
 
-    public void setOrderid(Integer orderid) {
-        this.orderid = orderid;
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
     }
 
     public Date getCreatetime() {
