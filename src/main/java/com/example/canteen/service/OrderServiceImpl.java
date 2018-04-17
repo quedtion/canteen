@@ -2,6 +2,7 @@ package com.example.canteen.service;
 
 import com.example.canteen.dao.CanteenDao;
 import com.example.canteen.dao.DishDao;
+import com.example.canteen.dao.OrderDao;
 import com.example.canteen.mapper.OrderdetailMapper;
 import com.example.canteen.mapper.OrdersMapper;
 import com.example.canteen.model.*;
@@ -23,6 +24,9 @@ public class OrderServiceImpl implements OrderService {
     private DishDao dishDao;
 
     @Autowired
+    private OrderDao orderDao;
+
+    @Autowired
     private OrdersMapper ordersMapper;
     @Autowired
     private OrderdetailMapper orderDetailMapper;
@@ -37,13 +41,13 @@ public class OrderServiceImpl implements OrderService {
         checkResult.setCheckCode(1);
 
         List<Dish> dishList = orders.getDishList();
-        Orderdetail orderDetail =  new Orderdetail();
+        Orderdetail orderDetail = new Orderdetail();
         String uuid = common.generateUUID();
         double shouldPay = 0.0;
         orders.setCode(uuid);
         Date date = new Date();
-        do{
-            for(int i = 0; i < dishList.size(); i ++){
+        do {
+            for (int i = 0; i < dishList.size(); i++) {
                 Dish dish = dishList.get(i);
                 orderDetail.setCode(uuid);
                 orderDetail.setCount(dish.getNum());
@@ -68,11 +72,32 @@ public class OrderServiceImpl implements OrderService {
             resultCode.setRs(1);
             resultCode.setValue(orders);
 
-        }while(false);
+        } while (false);
         if (checkResult.getCheckCode() < 0) {
             resultCode.setRs(checkResult.getCheckCode());
             resultCode.setMsg(checkResult.getCheckMsg());
         }
+        return gson.toJson(resultCode);
+    }
+
+    @Override
+    public String processList(Orders orders) {
+        ResultCode<List<Orders>> resultCode = new ResultCode<>();
+
+        do {
+            Integer userId = orders.getUserid();
+            if (userId == null) {
+                resultCode.setRs(-200);
+                resultCode.setMsg("传入的id为空");
+                break;
+            }else{
+                List<Orders> ordersList = orderDao.findListById(orders.getUserid());
+                resultCode.setRs(1);
+                resultCode.setValue(ordersList);
+            }
+
+        } while (false);
+
         return gson.toJson(resultCode);
     }
 }

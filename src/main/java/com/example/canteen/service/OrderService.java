@@ -6,4 +6,6 @@ import com.example.canteen.model.Orders;
 public interface OrderService {
 
     String processPay(Orders orders);
+
+    String processList(Orders orders);
 }

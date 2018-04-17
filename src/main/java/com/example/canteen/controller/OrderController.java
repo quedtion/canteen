@@ -21,6 +21,13 @@ public class OrderController {
         System.out.println("进入下单接口");
         return orderService.processPay(orders);
     }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @ResponseBody
+    public String prcessList(@RequestBody Orders orders){
+        System.out.println("进入查询我的订单接口");
+        return orderService.processList(orders);
+    }
 }
 
 
