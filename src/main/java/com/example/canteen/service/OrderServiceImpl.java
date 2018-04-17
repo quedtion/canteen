@@ -3,6 +3,7 @@ package com.example.canteen.service;
 import com.example.canteen.dao.CanteenDao;
 import com.example.canteen.dao.DishDao;
 import com.example.canteen.dao.OrderDao;
+import com.example.canteen.dao.OrderDetailDao;
 import com.example.canteen.mapper.OrderdetailMapper;
 import com.example.canteen.mapper.OrdersMapper;
 import com.example.canteen.model.*;
@@ -25,6 +26,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderDao orderDao;
+
+    @Autowired
+    private OrderDetailDao orderDetailDao;
 
     @Autowired
     private OrdersMapper ordersMapper;
@@ -98,6 +102,27 @@ public class OrderServiceImpl implements OrderService {
 
         } while (false);
 
+        return gson.toJson(resultCode);
+    }
+
+    @Override
+    public String processDetail(Orders orders) {
+        ResultCode<List<Orderdetail>> resultCode = new ResultCode<>();
+        do {
+            String code = orders.getCode();
+            if (code == null) {
+                resultCode.setRs(-200);
+                resultCode.setMsg("传入的code为空");
+                break;
+            }else{
+
+                List<Orderdetail> orderdetailList = orderDetailDao.findListByCode(code);
+                resultCode.setRs(1);
+                resultCode.setValue(orderdetailList);
+            }
+
+        } while (false);
+        System.out.println(gson.toJson(resultCode));
         return gson.toJson(resultCode);
     }
 }

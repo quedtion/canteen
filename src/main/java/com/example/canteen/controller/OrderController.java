@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/order")
+@CrossOrigin(origins = {"*"}, maxAge = 3600)
 public class OrderController {
 
     @Autowired
@@ -27,6 +28,13 @@ public class OrderController {
     public String prcessList(@RequestBody Orders orders){
         System.out.println("进入查询我的订单接口");
         return orderService.processList(orders);
+    }
+
+    @RequestMapping(value = "/detail", method = RequestMethod.POST)
+    @ResponseBody
+    public String prcessDetail(@RequestBody Orders orders){
+        System.out.println("进入查询我的订单接口");
+        return orderService.processDetail(orders);
     }
 }
 

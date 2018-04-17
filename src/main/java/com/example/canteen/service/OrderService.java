@@ -8,4 +8,6 @@ public interface OrderService {
     String processPay(Orders orders);
 
     String processList(Orders orders);
+
+    String processDetail(Orders orders);
 }
