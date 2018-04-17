@@ -29,6 +29,7 @@ public interface DishDao {
     @Select("select * from dish where deleted = 0")
     List<Dish> findList();
 
+
     @Select("select * from dish where deleted = 0 order by salesVolume desc limit #{count}")
     List<Dish> findRankingList(@Param("count") int count);
 
