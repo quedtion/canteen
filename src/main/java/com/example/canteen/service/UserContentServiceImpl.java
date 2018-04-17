@@ -79,12 +79,18 @@ public class UserContentServiceImpl implements UserContentService{
             try{
                 //根据订单id获取评论列表
                 List<Usercontent> userContentList = usercontentDao.findListByCode(usercontent.getCode());
-                resultCode.setRs(1);
-                resultCode.setValue(userContentList);
+                if(userContentList.size() > 0){
+                    resultCode.setRs(1);
+                    resultCode.setValue(userContentList);
+                }else{
+                    resultCode.setRs(-300);
+                    resultCode.setMsg("无数据");
+                }
+
             }catch(Exception e){
                 e.printStackTrace();
                 checkResult.setCheckCode(-350);
-                checkResult.setCheckMsg("数据库插入操作错误");
+                checkResult.setCheckMsg("数据库查询操作错误");
             }
         }
         while(false);
