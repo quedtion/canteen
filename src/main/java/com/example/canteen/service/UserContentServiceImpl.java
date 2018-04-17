@@ -6,9 +6,14 @@ import com.example.canteen.model.CheckResult;
 import com.example.canteen.model.ResultCode;
 import com.example.canteen.model.Usercontent;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,17 +25,23 @@ public class UserContentServiceImpl implements UserContentService{
     @Autowired
     private UsercontentDao usercontentDao;
 
-    private Gson gson = new Gson();
+    private Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
     @Override
     public String processCreate(Usercontent usercontent) {
-        ResultCode resultCode = new ResultCode<>();
+        ResultCode<List<Usercontent>> resultCode = new ResultCode<>();
         CheckResult checkResult = new CheckResult();
         checkResult.setCheckCode(1);
         do {
             try{
+                Date date = new Date();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                usercontent.setCreatetime(dateFormat.format(date));
                 usercontentMapper.insertSelective(usercontent);
+                List<Usercontent> usercontentList = new ArrayList<>();
+                usercontentList.add(usercontent);
                 resultCode.setRs(1);
+                resultCode.setValue(usercontentList);
             }catch(Exception e){
                 e.printStackTrace();
                 checkResult.setCheckCode(-350);

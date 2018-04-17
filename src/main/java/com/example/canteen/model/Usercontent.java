@@ -1,7 +1,5 @@
 package com.example.canteen.model;
 
-import java.util.Date;
-
 public class Usercontent {
     private Integer id;
 
@@ -11,7 +9,7 @@ public class Usercontent {
 
     private String code;
 
-    private Date createtime;
+    private String createtime;
 
     private String content;
 
@@ -47,12 +45,12 @@ public class Usercontent {
         this.code = code == null ? null : code.trim();
     }
 
-    public Date getCreatetime() {
+    public String getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime == null ? null : createtime.trim();
     }
 
     public String getContent() {
