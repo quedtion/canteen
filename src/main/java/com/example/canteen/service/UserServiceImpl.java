@@ -28,12 +28,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String processRegister(User user) {
-        ResultCode resultCode = new ResultCode<>();
+        ResultCode<User> resultCode = new ResultCode<>();
         CheckResult checkResult = new CheckResult();
         checkResult.setCheckCode(1);
         do{
             //校验数据
-            processValidation(user, checkResult, false);
+            processValidation(user, checkResult, true);
             if(checkResult.getCheckCode() < 0){
                 break;
             }
@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService {
                 user.setDeleted(0);
                 userMapper.insertSelective(user);
                 resultCode.setRs(1);
+                resultCode.setValue(user);
             } catch (Exception e) {
                 e.printStackTrace();
                 checkResult.setCheckCode(-350);
@@ -65,7 +66,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String processLogin(User user) {
-        ResultCode resultCode = new ResultCode<>();
+        ResultCode<User> resultCode = new ResultCode<>();
         CheckResult checkResult = new CheckResult();
         checkResult.setCheckCode(1);
         do{
@@ -81,6 +82,7 @@ public class UserServiceImpl implements UserService {
                 checkResult.setCheckMsg("用户名或密码错误");
             }
             resultCode.setRs(1);
+            resultCode.setValue(list.get(0));
 
         }while(false);
         if (checkResult.getCheckCode() < 0) {
