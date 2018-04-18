@@ -68,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
             Canteen canteen = canteenDao.findById(canteenId);
             orders.setCanteenname(canteen.getName());
             orders.setCreatetime(date);
-            orders.setShouldpay(shouldPay);
+            orders.setShouldpay(shouldPay + 3);
             orders.setStatus(2);
 
             //插入订单列表

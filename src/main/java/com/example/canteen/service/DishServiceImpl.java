@@ -58,12 +58,6 @@ public class DishServiceImpl implements DishService{
 
             try {
 
-
-//                //设置分页
-//                PageHelper.startPage(rankingList.getPage(), rankingList.getAccount());
-//
-//                PageHelper.orderBy(" salesVolume desc");
-                //获取列表
                 System.out.println("count = " + rankingList.getAccount());
                 List<Dish> list = dishDao.findRankingList(rankingList.getAccount());
                 resultCode.setRs(1);
@@ -74,6 +68,8 @@ public class DishServiceImpl implements DishService{
                 resultCode.setMsg("数据库插入操作错误");
             }
         }while(false);
+
+        System.out.println(gson.toJson(resultCode));
 
         return gson.toJson(resultCode);
     }

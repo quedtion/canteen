@@ -30,7 +30,8 @@ public interface DishDao {
     List<Dish> findList();
 
 
-    @Select("select * from dish where deleted = 0 order by salesVolume desc limit #{count}")
+    @Select("select A.*, B.`name` canteenname , B.photo canteenphoto from dish A INNER JOIN canteen B " +
+            "on A.canteenId = B.id and A.deleted = 0 order by salesVolume desc limit #{count}")
     List<Dish> findRankingList(@Param("count") int count);
 
 }

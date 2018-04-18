@@ -23,6 +23,26 @@ public class Dish {
 
     private Integer num;
 
+    private String canteenname;
+
+    private String canteenphoto;
+
+    public String getCanteenname() {
+        return canteenname;
+    }
+
+    public void setCanteenname(String canteenname) {
+        this.canteenname = canteenname;
+    }
+
+    public String getCanteenphoto() {
+        return canteenphoto;
+    }
+
+    public void setCanteenphoto(String canteenphoto) {
+        this.canteenphoto = canteenphoto;
+    }
+
     public Integer getNum() {
         return num;
     }

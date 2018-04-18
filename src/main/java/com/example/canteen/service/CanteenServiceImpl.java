@@ -190,12 +190,14 @@ public class CanteenServiceImpl implements CanteenService {
 
         try {
             List<Canteen> list = canteenDao.findListHallId(hallId);
-            common.validateList(resultCode, list);
+            resultCode.setRs(1);
+            resultCode.setValue(list);
         } catch (Exception e) {
             e.printStackTrace();
             resultCode.setRs(-350);
             resultCode.setMsg("数据库插入操作错误");
         }
+        System.out.println(gson.toJson(resultCode));
         return gson.toJson(resultCode);
 
     }
