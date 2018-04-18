@@ -7,6 +7,8 @@ public class Canteen {
 
     private String name;
 
+    private Integer hallid;
+
     private String address;
 
     private String photo;
@@ -35,6 +37,14 @@ public class Canteen {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public Integer getHallid() {
+        return hallid;
+    }
+
+    public void setHallid(Integer hallid) {
+        this.hallid = hallid;
     }
 
     public String getAddress() {

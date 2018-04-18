@@ -235,6 +235,66 @@ public class CanteenExample {
             return (Criteria) this;
         }
 
+        public Criteria andHallidIsNull() {
+            addCriterion("hallId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHallidIsNotNull() {
+            addCriterion("hallId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHallidEqualTo(Integer value) {
+            addCriterion("hallId =", value, "hallid");
+            return (Criteria) this;
+        }
+
+        public Criteria andHallidNotEqualTo(Integer value) {
+            addCriterion("hallId <>", value, "hallid");
+            return (Criteria) this;
+        }
+
+        public Criteria andHallidGreaterThan(Integer value) {
+            addCriterion("hallId >", value, "hallid");
+            return (Criteria) this;
+        }
+
+        public Criteria andHallidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("hallId >=", value, "hallid");
+            return (Criteria) this;
+        }
+
+        public Criteria andHallidLessThan(Integer value) {
+            addCriterion("hallId <", value, "hallid");
+            return (Criteria) this;
+        }
+
+        public Criteria andHallidLessThanOrEqualTo(Integer value) {
+            addCriterion("hallId <=", value, "hallid");
+            return (Criteria) this;
+        }
+
+        public Criteria andHallidIn(List<Integer> values) {
+            addCriterion("hallId in", values, "hallid");
+            return (Criteria) this;
+        }
+
+        public Criteria andHallidNotIn(List<Integer> values) {
+            addCriterion("hallId not in", values, "hallid");
+            return (Criteria) this;
+        }
+
+        public Criteria andHallidBetween(Integer value1, Integer value2) {
+            addCriterion("hallId between", value1, value2, "hallid");
+            return (Criteria) this;
+        }
+
+        public Criteria andHallidNotBetween(Integer value1, Integer value2) {
+            addCriterion("hallId not between", value1, value2, "hallid");
+            return (Criteria) this;
+        }
+
         public Criteria andAddressIsNull() {
             addCriterion("address is null");
             return (Criteria) this;

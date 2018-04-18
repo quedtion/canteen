@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.example.canteen.model.Canteen">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="hallId" jdbcType="INTEGER" property="hallid" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="photo" jdbcType="VARCHAR" property="photo" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, address, photo, start_time, end_time, introduce, createTime, deleted
+    id, name, hallId, address, photo, start_time, end_time, introduce, createTime, deleted
   </sql>
   <select id="selectByExample" parameterType="com.example.canteen.model.CanteenExample" resultMap="BaseResultMap">
     select
@@ -107,12 +108,14 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into canteen (name, address, photo, 
-      start_time, end_time, introduce, 
-      createTime, deleted)
-    values (#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{introduce,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER})
+    insert into canteen (name, hallId, address, 
+      photo, start_time, end_time, 
+      introduce, createTime, deleted
+      )
+    values (#{name,jdbcType=VARCHAR}, #{hallid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{introduce,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.canteen.model.Canteen">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -122,6 +125,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="name != null">
         name,
+      </if>
+      <if test="hallid != null">
+        hallId,
       </if>
       <if test="address != null">
         address,
@@ -148,6 +154,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="hallid != null">
+        #{hallid,jdbcType=INTEGER},
       </if>
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
@@ -187,6 +196,9 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
+      <if test="record.hallid != null">
+        hallId = #{record.hallid,jdbcType=INTEGER},
+      </if>
       <if test="record.address != null">
         address = #{record.address,jdbcType=VARCHAR},
       </if>
@@ -217,6 +229,7 @@
     update canteen
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
+      hallId = #{record.hallid,jdbcType=INTEGER},
       address = #{record.address,jdbcType=VARCHAR},
       photo = #{record.photo,jdbcType=VARCHAR},
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
@@ -233,6 +246,9 @@
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="hallid != null">
+        hallId = #{hallid,jdbcType=INTEGER},
       </if>
       <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
@@ -261,6 +277,7 @@
   <update id="updateByPrimaryKey" parameterType="com.example.canteen.model.Canteen">
     update canteen
     set name = #{name,jdbcType=VARCHAR},
+      hallId = #{hallid,jdbcType=INTEGER},
       address = #{address,jdbcType=VARCHAR},
       photo = #{photo,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},
