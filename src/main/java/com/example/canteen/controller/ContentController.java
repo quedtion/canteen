@@ -26,7 +26,7 @@ public class ContentController {
     @RequestMapping(value = "/listByCanteen", method = RequestMethod.POST)
     @ResponseBody
     public String processListByCanteenId(@RequestBody Usercontent usercontent){
-        System.out.println("进入根据食堂id获取评论列表接口");
+        System.out.println("进入根据商家id获取评论列表接口");
         return userContentService.processListByCanteenId(usercontent);
     }
 

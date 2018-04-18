@@ -16,6 +16,14 @@ public interface CanteenDao {
     List<Canteen> findList();
 
     /**
+     * 根据食堂id获取商家列表
+     * @param hallId
+     * @return
+     */
+    @Select("select * from canteen where deleted = 0 and hallId = #{hallId};")
+    List<Canteen> findListHallId(@Param("hallId") int hallId);
+
+    /**
      * 根据食堂名称查询食堂信息列表（新增食堂信息时名称验重）
      * @param name 食堂名称
      * @return 食堂信息list

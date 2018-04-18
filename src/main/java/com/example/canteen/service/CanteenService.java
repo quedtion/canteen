@@ -34,4 +34,6 @@ public interface CanteenService {
      * @return 结果信息json
      */
     String processDelete(Canteen canteen);
+
+    String processListHallId(Canteen canteen);
 }

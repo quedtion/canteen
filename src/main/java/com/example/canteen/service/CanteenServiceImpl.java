@@ -176,6 +176,30 @@ public class CanteenServiceImpl implements CanteenService {
         return gson.toJson(resultCode);
     }
 
+    @Override
+    public String processListHallId(Canteen canteen) {
+
+        ResultCode<List<Canteen>> resultCode = new ResultCode<>();
+
+        Integer hallId = canteen.getHallid();
+        if(hallId == null){
+            resultCode.setRs(-200);
+            resultCode.setMsg("传入的id为空");
+            return gson.toJson(resultCode);
+        }
+
+        try {
+            List<Canteen> list = canteenDao.findListHallId(hallId);
+            common.validateList(resultCode, list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            resultCode.setRs(-350);
+            resultCode.setMsg("数据库插入操作错误");
+        }
+        return gson.toJson(resultCode);
+
+    }
+
 
     /**
      * 校验传入的食堂数据是否正确
