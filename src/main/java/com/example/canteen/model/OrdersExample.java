@@ -693,6 +693,146 @@ public class OrdersExample {
             addCriterion("remark not between", value1, value2, "remark");
             return (Criteria) this;
         }
+
+        public Criteria andReceIsNull() {
+            addCriterion("rece is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceIsNotNull() {
+            addCriterion("rece is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceEqualTo(String value) {
+            addCriterion("rece =", value, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceNotEqualTo(String value) {
+            addCriterion("rece <>", value, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceGreaterThan(String value) {
+            addCriterion("rece >", value, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceGreaterThanOrEqualTo(String value) {
+            addCriterion("rece >=", value, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceLessThan(String value) {
+            addCriterion("rece <", value, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceLessThanOrEqualTo(String value) {
+            addCriterion("rece <=", value, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceLike(String value) {
+            addCriterion("rece like", value, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceNotLike(String value) {
+            addCriterion("rece not like", value, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceIn(List<String> values) {
+            addCriterion("rece in", values, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceNotIn(List<String> values) {
+            addCriterion("rece not in", values, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceBetween(String value1, String value2) {
+            addCriterion("rece between", value1, value2, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceNotBetween(String value1, String value2) {
+            addCriterion("rece not between", value1, value2, "rece");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelIsNull() {
+            addCriterion("tel is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelIsNotNull() {
+            addCriterion("tel is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelEqualTo(String value) {
+            addCriterion("tel =", value, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelNotEqualTo(String value) {
+            addCriterion("tel <>", value, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelGreaterThan(String value) {
+            addCriterion("tel >", value, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelGreaterThanOrEqualTo(String value) {
+            addCriterion("tel >=", value, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelLessThan(String value) {
+            addCriterion("tel <", value, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelLessThanOrEqualTo(String value) {
+            addCriterion("tel <=", value, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelLike(String value) {
+            addCriterion("tel like", value, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelNotLike(String value) {
+            addCriterion("tel not like", value, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelIn(List<String> values) {
+            addCriterion("tel in", values, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelNotIn(List<String> values) {
+            addCriterion("tel not in", values, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelBetween(String value1, String value2) {
+            addCriterion("tel between", value1, value2, "tel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelNotBetween(String value1, String value2) {
+            addCriterion("tel not between", value1, value2, "tel");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

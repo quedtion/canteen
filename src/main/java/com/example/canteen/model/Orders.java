@@ -21,6 +21,10 @@ public class Orders {
 
     private String remark;
 
+    private String rece;
+
+    private String tel;
+
     private List<Dish> dishList;
 
     private String photo;
@@ -111,5 +115,21 @@ public class Orders {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getRece() {
+        return rece;
+    }
+
+    public void setRece(String rece) {
+        this.rece = rece == null ? null : rece.trim();
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel == null ? null : tel.trim();
     }
 }

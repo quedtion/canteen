@@ -11,6 +11,8 @@
     <result column="shouldPay" jdbcType="DOUBLE" property="shouldpay" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="rece" jdbcType="VARCHAR" property="rece" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    code, userId, canteenName, canteenId, createTime, status, shouldPay, address, remark
+    code, userId, canteenName, canteenId, createTime, status, shouldPay, address, remark, 
+    rece, tel
   </sql>
   <select id="selectByExample" parameterType="com.example.canteen.model.OrdersExample" resultMap="BaseResultMap">
     select
@@ -106,12 +109,12 @@
   <insert id="insert" parameterType="com.example.canteen.model.Orders">
     insert into orders (code, userId, canteenName, 
       canteenId, createTime, status, 
-      shouldPay, address, remark
-      )
+      shouldPay, address, remark, 
+      rece, tel)
     values (#{code,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{canteenname,jdbcType=VARCHAR}, 
       #{canteenid,jdbcType=INTEGER}, #{createtime,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{shouldpay,jdbcType=DOUBLE}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
-      )
+      #{shouldpay,jdbcType=DOUBLE}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{rece,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.canteen.model.Orders">
     insert into orders
@@ -143,6 +146,12 @@
       <if test="remark != null">
         remark,
       </if>
+      <if test="rece != null">
+        rece,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="code != null">
@@ -171,6 +180,12 @@
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rece != null">
+        #{rece,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -210,6 +225,12 @@
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
+      <if test="record.rece != null">
+        rece = #{record.rece,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null">
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -225,7 +246,9 @@
       status = #{record.status,jdbcType=INTEGER},
       shouldPay = #{record.shouldpay,jdbcType=DOUBLE},
       address = #{record.address,jdbcType=VARCHAR},
-      remark = #{record.remark,jdbcType=VARCHAR}
+      remark = #{record.remark,jdbcType=VARCHAR},
+      rece = #{record.rece,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,6 +280,12 @@
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="rece != null">
+        rece = #{rece,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
     </set>
     where code = #{code,jdbcType=VARCHAR}
   </update>
@@ -269,7 +298,9 @@
       status = #{status,jdbcType=INTEGER},
       shouldPay = #{shouldpay,jdbcType=DOUBLE},
       address = #{address,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR}
+      remark = #{remark,jdbcType=VARCHAR},
+      rece = #{rece,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR}
     where code = #{code,jdbcType=VARCHAR}
   </update>
 </mapper>
