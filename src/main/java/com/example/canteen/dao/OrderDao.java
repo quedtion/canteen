@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface OrderDao {
 
-    @Select("select A.*, B.photo from orders A INNER JOIN canteen B on A.canteenId = B.id and A.userId = #{userId}")
+    @Select("select A.*, B.photo from orders A INNER JOIN canteen B on A.canteenId = B.id and A.userId = #{userId} order by A.createTime DESC;")
     List<Orders> findListById(@Param("userId") int userId);
 }
