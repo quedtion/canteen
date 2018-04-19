@@ -81,7 +81,8 @@ public class AddressServiceImpl implements AddressService {
             try {
                 List<Address> list = new ArrayList<>();
                 list = addressDao.findList(address.getUserid());
-                commen.validateList(resultCode, list);
+                resultCode.setRs(1);
+                resultCode.setValue(list);
             } catch (Exception e) {
                 e.printStackTrace();
                 checkResult.setCheckCode(-350);
