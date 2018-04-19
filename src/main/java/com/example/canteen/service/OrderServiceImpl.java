@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -47,9 +48,13 @@ public class OrderServiceImpl implements OrderService {
         List<Dish> dishList = orders.getDishList();
         Orderdetail orderDetail = new Orderdetail();
         String uuid = common.generateUUID();
+        System.out.println(uuid);
         double shouldPay = 0.0;
         orders.setCode(uuid);
         Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = simpleDateFormat.format(date);
+
         do {
             for (int i = 0; i < dishList.size(); i++) {
                 Dish dish = dishList.get(i);
@@ -67,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
             orders.setCanteenid(canteenId);
             Canteen canteen = canteenDao.findById(canteenId);
             orders.setCanteenname(canteen.getName());
-            orders.setCreatetime(date);
+            orders.setCreatetime(dateString);
             orders.setShouldpay(shouldPay + 3);
             orders.setStatus(2);
 

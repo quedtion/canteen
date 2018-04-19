@@ -1,6 +1,5 @@
 package com.example.canteen.model;
 
-import java.util.Date;
 import java.util.List;
 
 public class Orders {
@@ -12,7 +11,7 @@ public class Orders {
 
     private Integer canteenid;
 
-    private Date createtime;
+    private String createtime;
 
     private Integer status;
 
@@ -25,6 +24,22 @@ public class Orders {
     private List<Dish> dishList;
 
     private String photo;
+
+    public List<Dish> getDishList() {
+        return dishList;
+    }
+
+    public void setDishList(List<Dish> dishList) {
+        this.dishList = dishList;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public String getCode() {
         return code;
@@ -58,12 +73,12 @@ public class Orders {
         this.canteenid = canteenid;
     }
 
-    public Date getCreatetime() {
+    public String getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime == null ? null : createtime.trim();
     }
 
     public Integer getStatus() {
@@ -96,21 +111,5 @@ public class Orders {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
-    }
-
-    public List<Dish> getDishList() {
-        return dishList;
-    }
-
-    public void setDishList(List<Dish> dishList) {
-        this.dishList = dishList;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 }

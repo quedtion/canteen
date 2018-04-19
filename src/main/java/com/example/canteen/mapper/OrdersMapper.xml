@@ -6,7 +6,7 @@
     <result column="userId" jdbcType="INTEGER" property="userid" />
     <result column="canteenName" jdbcType="VARCHAR" property="canteenname" />
     <result column="canteenId" jdbcType="INTEGER" property="canteenid" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="createTime" jdbcType="VARCHAR" property="createtime" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="shouldPay" jdbcType="DOUBLE" property="shouldpay" />
     <result column="address" jdbcType="VARCHAR" property="address" />
@@ -109,7 +109,7 @@
       shouldPay, address, remark
       )
     values (#{code,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{canteenname,jdbcType=VARCHAR}, 
-      #{canteenid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{canteenid,jdbcType=INTEGER}, #{createtime,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{shouldpay,jdbcType=DOUBLE}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
@@ -158,7 +158,7 @@
         #{canteenid,jdbcType=INTEGER},
       </if>
       <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+        #{createtime,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -196,7 +196,7 @@
         canteenId = #{record.canteenid,jdbcType=INTEGER},
       </if>
       <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+        createTime = #{record.createtime,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
@@ -221,7 +221,7 @@
       userId = #{record.userid,jdbcType=INTEGER},
       canteenName = #{record.canteenname,jdbcType=VARCHAR},
       canteenId = #{record.canteenid,jdbcType=INTEGER},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      createTime = #{record.createtime,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       shouldPay = #{record.shouldpay,jdbcType=DOUBLE},
       address = #{record.address,jdbcType=VARCHAR},
@@ -243,7 +243,7 @@
         canteenId = #{canteenid,jdbcType=INTEGER},
       </if>
       <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+        createTime = #{createtime,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -265,7 +265,7 @@
     set userId = #{userid,jdbcType=INTEGER},
       canteenName = #{canteenname,jdbcType=VARCHAR},
       canteenId = #{canteenid,jdbcType=INTEGER},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
+      createTime = #{createtime,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       shouldPay = #{shouldpay,jdbcType=DOUBLE},
       address = #{address,jdbcType=VARCHAR},
