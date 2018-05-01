@@ -28,8 +28,7 @@ public class DishServiceImpl implements DishService{
     @Autowired
     private DishMapper dishMapper;
 
-    @Autowired
-    private Common common;
+    private Common common = new Common();
 
     private String fileLocation = "E:/file/";
 
@@ -121,14 +120,16 @@ public class DishServiceImpl implements DishService{
 
             dish.setPhoto(url);
             dish.setCreatetime(new Date());
+            dish.setSalesvolume(0);
             dish.setDeleted(0);
 
             dishMapper.insertSelective(dish);
-            resultCode.setValue(1);
+            resultCode.setRs(1);
 
         }catch(Exception e){
             e.printStackTrace();
-            resultCode.setValue(-350);
+            resultCode.setRs(-350);
+            resultCode.setMsg("数据插入失败");
         }
 
         return gson.toJson(resultCode);
