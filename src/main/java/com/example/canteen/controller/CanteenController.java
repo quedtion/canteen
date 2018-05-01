@@ -25,9 +25,9 @@ public class CanteenController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public String processCreate(@RequestBody Canteen canteen, HttpServletRequest request){
+    public String processCreate(HttpServletRequest request){
         System.out.println("进入新增商家信息接口");
-        return canteenService.processCreate(canteen, request);
+        return canteenService.processCreate(request);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

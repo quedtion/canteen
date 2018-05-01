@@ -34,4 +34,6 @@ public interface DishDao {
             "on A.canteenId = B.id and A.deleted = 0 order by salesVolume desc limit #{count}")
     List<Dish> findRankingList(@Param("count") int count);
 
+    @Select("select * from dish where name like #{name} order by salesVolume desc")
+    List<Dish> findByNameLike(@Param("name") String name);
 }

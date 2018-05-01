@@ -9,10 +9,16 @@ import com.example.canteen.model.Validation;
 import com.example.canteen.utils.Common;
 import com.example.canteen.utils.ValidationUtils;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +34,8 @@ public class CanteenServiceImpl implements CanteenService {
     private Gson gson = new Gson();
     private Common<Canteen> common = new Common();
     private ValidationUtils validationUtils = new ValidationUtils();
+
+    private String fileLocation = "E:/file/";
 
     @Override
     public String processList() {
@@ -45,18 +53,16 @@ public class CanteenServiceImpl implements CanteenService {
     }
 
     @Override
-    public String processCreate(Canteen canteen, HttpServletRequest request) {
+    public String processCreate(HttpServletRequest request) {
         ResultCode<Canteen> resultCode = new ResultCode<>();
         CheckResult checkResult = new CheckResult();
         checkResult.setCheckCode(1);
         do{
             //校验数据
-            processValidation(canteen, checkResult, true);
-            if(checkResult.getCheckCode() < 0){
-                break;
-            }
-
-            //存储图片
+            String canteenStr = request.getParameter("json");
+            Canteen canteen = gson.fromJson(canteenStr, new TypeToken<Canteen>(){}.getType());
+            canteen.setStartTime("09:00");
+            canteen.setEndTime("20:00");
 
             //插入操作之前校验数据库
             processDB(canteen, checkResult, true);
@@ -66,8 +72,12 @@ public class CanteenServiceImpl implements CanteenService {
 
             //数据库插入操作
             try {
+                //存储图片
+                Part part = request.getPart("file");
+                String url = common.uploadFile(fileLocation, part);
                 Date date = new Date();
                 canteen.setCreatetime(date);
+                canteen.setPhoto(url);
                 canteen.setDeleted(0);
 
                 canteenMapper.insertSelective(canteen);

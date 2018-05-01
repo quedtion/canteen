@@ -14,11 +14,10 @@ public interface CanteenService {
 
     /**
      * 新增食堂信息
-     * @param canteen 食堂信息model
      * @param request 网络请求
      * @return 结果信息json
      */
-    String processCreate(Canteen canteen, HttpServletRequest request);
+    String processCreate(HttpServletRequest request);
 
     /**
      * 修改食堂信息

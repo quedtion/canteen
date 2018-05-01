@@ -80,6 +80,7 @@ public class UserServiceImpl implements UserService {
             if(list.size() != 1){
                 checkResult.setCheckCode(-1);
                 checkResult.setCheckMsg("用户名或密码错误");
+                break;
             }
             resultCode.setRs(1);
             resultCode.setValue(list.get(0));
