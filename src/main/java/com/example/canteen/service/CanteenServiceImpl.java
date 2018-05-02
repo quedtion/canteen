@@ -35,7 +35,7 @@ public class CanteenServiceImpl implements CanteenService {
     private Common<Canteen> common = new Common();
     private ValidationUtils validationUtils = new ValidationUtils();
 
-    private String fileLocation = "E:/file/";
+    private String fileLocation = "D:/file/";
 
     @Override
     public String processList() {
